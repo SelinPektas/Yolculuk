@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class DoorDraw : MonoBehaviour
 {
-    public GameObject player2;         // Player2 objesini Inspector'dan ata
     public GameObject promptText;      // Yaklaşınca çıkacak text
-    public GameObject objectToDestroy; // Yok edilecek obje (ör: duvar)
     public GameObject doorPrefab;      // Eklenecek kapı sprite prefabı
 
     private bool isPlayer2Near = false;
@@ -18,28 +16,27 @@ public class DoorDraw : MonoBehaviour
     {
         if (isPlayer2Near && Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(objectToDestroy);
-
             // Kapıyı aynı pozisyona ekle
-            Instantiate(doorPrefab, objectToDestroy.transform.position, Quaternion.identity);
+            Instantiate(doorPrefab, gameObject.transform.position, Quaternion.identity);
 
             promptText.SetActive(false);
             isPlayer2Near = false;
+            Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject == player2)
+        if (collision.gameObject.CompareTag("Player2"))
         {
             promptText.SetActive(true);
             isPlayer2Near = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (other.gameObject == player2)
+        if (collision.gameObject.CompareTag("Player2"))
         {
             promptText.SetActive(false);
             isPlayer2Near = false;
