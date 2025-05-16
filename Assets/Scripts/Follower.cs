@@ -7,9 +7,12 @@ public class Follower : MonoBehaviour
     public float stopDistance = 1.5f;
     private Animator animator;
 
+    private Vector3 initialScale;
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        initialScale = transform.localScale;
     }
 
     void Update()
@@ -23,8 +26,13 @@ public class Follower : MonoBehaviour
             Vector2 direction = (target.position - transform.position).normalized;
             transform.position = Vector2.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
 
+            // Sağa giderken flipX = true, sola giderken flipX = false
             if (direction.x != 0)
-                transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
+            {
+                var spriteRenderer = GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                    spriteRenderer.flipX = direction.x > 0;
+            }
 
             animator.SetFloat("Speed", Mathf.Abs(direction.x));
         }

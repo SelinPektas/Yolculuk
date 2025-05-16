@@ -15,19 +15,21 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (isNearObject && Input.GetKeyDown(KeyCode.E) && !popupPanel.activeSelf)
+        if (isNearObject && Input.GetKeyDown(KeyCode.E))
         {
-            popupPanel.SetActive(true);
-            interactText.SetActive(false);
-            if (playerMovement != null)
-                playerMovement.enabled = false;
-        }
-        // Panel açıkken ESC ile kapat
-        else if (popupPanel.activeSelf && Input.GetKeyDown(KeyCode.Escape))
-        {
-            popupPanel.SetActive(false);
-            if (playerMovement != null)
-                playerMovement.enabled = true;
+            if (!popupPanel.activeSelf)
+            {
+                popupPanel.SetActive(true);
+                interactText.SetActive(false);
+                if (playerMovement != null)
+                    playerMovement.enabled = false;
+            }
+            else
+            {
+                popupPanel.SetActive(false);
+                if (playerMovement != null)
+                    playerMovement.enabled = true;
+            }
         }
     }
 
@@ -37,6 +39,14 @@ public class PlayerInteraction : MonoBehaviour
         {
             isNearObject = true;
             interactText.SetActive(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Interactable"))
+        {
+            isNearObject = false;
+            interactText.SetActive(false);
         }
     }
 }
