@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Kalem : MonoBehaviour
 {
@@ -21,7 +22,32 @@ public class Kalem : MonoBehaviour
                 // Kalemi envanterden çıkar
                 inv.items.Remove("Kalem");
 
-                // İstersen envanter UI'dan da kaldırabilirsin:
+                // Takipçi başlat
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                GameObject activePlayer = null;
+                GameObject otherPlayer = null;
+
+                // İki karakterden hangisi aktif, hangisi değil bul
+                foreach (var player in players)
+                {
+                    var movement = player.GetComponent<PlayerMovement>();
+                    if (movement != null && movement.enabled)
+                        activePlayer = player;
+                    else
+                        otherPlayer = player;
+                }
+
+                if (otherPlayer != null)
+                {
+                    var follower = otherPlayer.GetComponent<Follower>();
+                    if (follower != null)
+                    {
+                        follower.target = activePlayer.transform;
+                        follower.enabled = true;
+                    }
+                }
+
+                // Envanter UI'dan da kaldırabilirsin:
                 foreach (Transform slot in inv.inventoryPanel)
                 {
                     Image img = slot.GetComponentInChildren<Image>();
