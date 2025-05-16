@@ -2,6 +2,10 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+<<<<<<< HEAD
+=======
+.utmp/
+>>>>>>> d505ca4 (İlk commit: Unity projesi başlatıldı~)
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -9,6 +13,10 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+<<<<<<< HEAD
+=======
+*.log
+>>>>>>> d505ca4 (İlk commit: Unity projesi başlatıldı~)
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -59,6 +67,10 @@ sysinfo.txt
 *.apk
 *.aab
 *.unitypackage
+<<<<<<< HEAD
+=======
+*.unitypackage.meta
+>>>>>>> d505ca4 (İlk commit: Unity projesi başlatıldı~)
 *.app
 
 # Crashlytics generated file
