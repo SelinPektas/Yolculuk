@@ -10,10 +10,13 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    private Vector3 initialScale;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        initialScale = transform.localScale;
     }
 
     private void Update()
@@ -25,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveInput != 0)
         {
-            transform.localScale = new Vector3(Mathf.Sign(moveInput), 1, 1);
+            // Scale'ı sadece yön için değiştir, büyüme/bozulma olmaz
+            transform.localScale = new Vector3(initialScale.x * Mathf.Sign(moveInput), initialScale.y, initialScale.z);
         }
     }
 }

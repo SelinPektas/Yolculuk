@@ -43,6 +43,12 @@ public class PlayerSwitcher : MonoBehaviour
         {
             followerA.enabled = false;
         }
+
+        // Interaction scriptlerini ayarla
+        var interactionA = characterA.GetComponent<PlayerInteraction>();
+        var interactionB = characterB.GetComponent<PlayerInteraction>();
+        if (interactionA != null) interactionA.enabled = true;
+        if (interactionB != null) interactionB.enabled = false;
     }
 
     void SwitchToB()
@@ -62,5 +68,11 @@ public class PlayerSwitcher : MonoBehaviour
         {
             followerB.enabled = false;
         }
+
+        // Interaction scriptlerini ayarla
+        var interactionA = characterA.GetComponent<PlayerInteraction>();
+        var interactionB = characterB.GetComponent<PlayerInteraction>();
+        if (interactionA != null) interactionA.enabled = false;
+        if (interactionB != null) interactionB.enabled = true;
     }
 }
