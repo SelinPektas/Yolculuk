@@ -10,16 +10,17 @@ public class TakeCane : MonoBehaviour
     public Sprite caneIcon;
 
     private bool hasCane = false;
+    private bool isPlayerNear = false;
 
     void Start()
     {
         cane.SetActive(false);
-        promptUI.SetActive(true);
+        promptUI.SetActive(false); // Başlangıçta yazı gizli
     }
 
     void Update()
     {
-        if (!hasCane && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNear && !hasCane && Input.GetKeyDown(KeyCode.E))
         {
             cane.SetActive(true);
             hasCane = true;
@@ -31,6 +32,26 @@ public class TakeCane : MonoBehaviour
             {
                 inv.AddItem(caneName, caneIcon);
             }
+
+            Destroy(gameObject); // Baston objesini yok et
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && !hasCane)
+        {
+            promptUI.SetActive(true);
+            isPlayerNear = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            promptUI.SetActive(false);
+            isPlayerNear = false;
         }
     }
 }
