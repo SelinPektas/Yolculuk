@@ -38,8 +38,8 @@ size:1880,1753
 filter:Linear,Linear
 pma:true
 Body
-bounds:2,2,935,1493
-offsets:1,0,936,1493
+bounds:2,2,935,1692
+offsets:1,0,936,1692
 rotate:90
 Head
 bounds:2,1091,689,660
