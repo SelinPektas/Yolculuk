@@ -27,7 +27,6 @@ public class Kalem : MonoBehaviour
                 GameObject activePlayer = null;
                 GameObject otherPlayer = null;
 
-                // İki karakterden hangisi aktif, hangisi değil bul
                 foreach (var player in players)
                 {
                     var movement = player.GetComponent<PlayerMovement>();
@@ -47,6 +46,11 @@ public class Kalem : MonoBehaviour
                     }
                 }
 
+                // PlayerSwitcher'ı aktif et
+                PlayerSwitcher switcher = FindObjectOfType<PlayerSwitcher>();
+                if (switcher != null)
+                    switcher.enabled = true;
+
                 // Envanter UI'dan da kaldırabilirsin:
                 foreach (Transform slot in inv.inventoryPanel)
                 {
@@ -57,6 +61,7 @@ public class Kalem : MonoBehaviour
                         break;
                     }
                 }
+                Destroy(baloncukUI);
             }
         }
         else
