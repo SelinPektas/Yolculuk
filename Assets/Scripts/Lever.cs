@@ -3,7 +3,6 @@ using UnityEngine;
 public class Lever : MonoBehaviour
 {
     public GameObject cane;
-    public Transform caneSlot;
     public GameObject promptUI;
     public TrainController trainController;
 
@@ -14,7 +13,6 @@ public class Lever : MonoBehaviour
     private bool isCaneInserted = false;
     private bool isLeverPushed = false;
     private bool isPlayerNear = false;
-    public GameObject objectToDisable;
 
     void Update()
     {
@@ -28,11 +26,12 @@ public class Lever : MonoBehaviour
         {
             isCaneInserted = true;
             promptUI.SetActive(true);
-
+            if (inv != null)
+                inv.RemoveItem("Baston");
             if (slotSpriteRenderer != null && insertedSprite != null)
                 slotSpriteRenderer.sprite = insertedSprite;
-            if (objectToDisable != null)
-                objectToDisable.SetActive(false);
+            if (cane != null)
+                cane.SetActive(false);
         }
         else if (isPlayerNear && isCaneInserted && !isLeverPushed && Input.GetKeyDown(KeyCode.E))
         {
