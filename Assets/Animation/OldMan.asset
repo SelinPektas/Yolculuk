@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
   m_Name: OldMan
   m_EditorClassIdentifier: 
-  atlasAssets: []
+  atlasAssets:
+  - {fileID: 11400000, guid: 4e29a2ee905b2754e9584aa4c9cebe8f, type: 2}
   scale: 0.01
   skeletonJSON: {fileID: 4900000, guid: 1986306778c3f33468c8e56361cceb72, type: 3}
   isUpgradingBlendModeMaterials: 0
@@ -27,4 +28,4 @@ MonoBehaviour:
   toAnimation: []
   duration: []
   defaultMix: 0
-  controller: {fileID: 0}
+  controller: {fileID: 9100000, guid: db78051f6c1e01e4d81610d0af5ab887, type: 2}
