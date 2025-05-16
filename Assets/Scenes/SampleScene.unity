@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 415680520}
   - component: {fileID: 415680519}
   m_Layer: 3
-  m_Name: text
+  m_Name: "text\xE7ocuk"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,14 +314,14 @@ RectTransform:
   m_GameObject: {fileID: 415680518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.6168994}
-  m_LocalScale: {x: 1.04, y: 1.04, z: 1.04}
+  m_LocalScale: {x: 0.29, y: 0.29, z: 0.29}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1073372781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.7, y: 19.2}
+  m_AnchoredPosition: {x: -0.03, y: 3.36}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
@@ -462,6 +462,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baloncukUI: {fileID: 897273438}
+  promptText: {fileID: 1307953285}
+  kalemKagitSprite: {fileID: 21300000, guid: fb5af5bbc4b786a4ebce2a917e96cea0, type: 3}
 --- !u!4 &593942177
 Transform:
   m_ObjectHideFlags: 0
@@ -614,7 +616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a8e5518a482b74ba3f0a00f7ca621b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
+  items:
+  - Kalem
   inventoryPanel: {fileID: 634293193}
   itemSlotPrefab: {fileID: 7861153892417037583, guid: decf4eefef017b447bf4db1f4fffe6c5, type: 3}
 --- !u!114 &748812009
@@ -994,7 +997,7 @@ GameObject:
   - component: {fileID: 1073372775}
   m_Layer: 3
   m_Name: "\xE7ocuk"
-  m_TagString: Player
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1151,7 +1154,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6ef32770e1d10e449b111e60fb9b5d51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 12, y: 12}

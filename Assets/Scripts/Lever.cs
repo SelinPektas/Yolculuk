@@ -14,6 +14,7 @@ public class Lever : MonoBehaviour
     private bool isCaneInserted = false;
     private bool isLeverPushed = false;
     private bool isPlayerNear = false;
+    public GameObject objectToDisable;
 
     void Update()
     {
@@ -30,6 +31,8 @@ public class Lever : MonoBehaviour
 
             if (slotSpriteRenderer != null && insertedSprite != null)
                 slotSpriteRenderer.sprite = insertedSprite;
+            if (objectToDisable != null)
+                objectToDisable.SetActive(false);
         }
         else if (isPlayerNear && isCaneInserted && !isLeverPushed && Input.GetKeyDown(KeyCode.E))
         {

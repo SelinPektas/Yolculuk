@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class Kalem : MonoBehaviour
 {
     public GameObject baloncukUI; // Baloncuk objesi
+    public GameObject promptText; // "E'ye bas" gibi uyarı texti
+    public Sprite kalemKagitSprite; // Inspector'dan ata
     private bool isPlayerNear = false;
 
     void Update()
@@ -13,14 +15,17 @@ public class Kalem : MonoBehaviour
 
         if (isPlayerNear)
         {
+            promptText.SetActive(true);
             baloncukUI.SetActive(true);
 
             if (hasKalem && Input.GetKeyDown(KeyCode.E))
             {
+                promptText.SetActive(false);
                 baloncukUI.SetActive(false);
 
                 // Kalemi envanterden çıkar
-                inv.items.Remove("Kalem");
+                inv.AddItem("Kalem Kağıt", kalemKagitSprite);
+                inv.RemoveItem("Kalem");
 
                 // Takipçi başlat
                 GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -51,7 +56,7 @@ public class Kalem : MonoBehaviour
                 if (switcher != null)
                     switcher.enabled = true;
 
-                // Envanter UI'dan da kaldırabilirsin:
+                // Eski kalem slotunu kaldır
                 foreach (Transform slot in inv.inventoryPanel)
                 {
                     Image img = slot.GetComponentInChildren<Image>();
@@ -61,11 +66,12 @@ public class Kalem : MonoBehaviour
                         break;
                     }
                 }
-                Destroy(baloncukUI);
+                Destroy(gameObject);
             }
         }
         else
         {
+            promptText.SetActive(false);
             baloncukUI.SetActive(false);
         }
     }

@@ -25,12 +25,12 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
         if (moveInput != 0)
         {
+            // Sağa giderken flipX = true, sola giderken flipX = false
             spriteRenderer.flipX = moveInput > 0;
         }
         animator.SetFloat("Speed", Mathf.Abs(moveInput));
-
-
     }
 }
