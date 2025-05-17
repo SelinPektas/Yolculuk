@@ -1,6 +1,5 @@
 skeleton.png
 size:1850,1773
-format:Alpha
 filter:Linear,Linear
 pma:true
 Crayon
@@ -55,7 +54,6 @@ bounds:492,1637,194,134
 
 skeleton_2.png
 size:1732,1571
-format:Alpha
 filter:Linear,Linear
 pma:true
 Body
