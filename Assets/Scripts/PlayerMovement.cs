@@ -44,9 +44,15 @@ public class PlayerMovement : MonoBehaviour
                 textScale.x = Mathf.Abs(textScale.x) * Mathf.Sign(initialScale.x) * direction;
                 textChild.localScale = textScale;
             }
+            Transform text1Child = transform.Find("text1");
+            if (text1Child != null)
+            {
+                Vector3 text1Scale = text1Child.localScale;
+                text1Scale.x = Mathf.Abs(text1Scale.x) * Mathf.Sign(initialScale.x) * direction;
+                text1Child.localScale = text1Scale;
+            }
         }
 
-        // Animasyon kontrolü
         if (hasCane)
         {
             if (Mathf.Abs(moveInput) > 0)
@@ -61,14 +67,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (wasWalking)
                 {
+                    // Walk2'den çıkınca önce No, sonra Idle1
                     skeletonAnimation.AnimationState.SetAnimation(0, "No", false);
-                    skeletonAnimation.AnimationState.AddAnimation(0, "Idle", true, 0);
+                    skeletonAnimation.AnimationState.AddAnimation(0, "Idle1", true, 0);
                     wasWalking = false;
                     waitingForIdle = true;
                 }
                 else if (!waitingForIdle)
                 {
-                    skeletonAnimation.AnimationName = "Idle";
+                    skeletonAnimation.AnimationName = "Idle1";
                 }
             }
         }
@@ -86,14 +93,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (wasWalking)
                 {
-                    skeletonAnimation.AnimationState.SetAnimation(0, "No", false);
-                    skeletonAnimation.AnimationState.AddAnimation(0, "Idle", true, 0);
+                    // Walk1'den çıkınca direkt Idle2
+                    skeletonAnimation.AnimationState.SetAnimation(0, "Idle2", true);
                     wasWalking = false;
                     waitingForIdle = true;
                 }
                 else if (!waitingForIdle)
                 {
-                    skeletonAnimation.AnimationName = "No";
+                    skeletonAnimation.AnimationName = "Idle2";
                 }
             }
         }

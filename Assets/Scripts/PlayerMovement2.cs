@@ -8,9 +8,6 @@ public class PlayerMovement2 : MonoBehaviour
     private SkeletonAnimation skeletonAnimation;
     private Vector3 initialScale;
 
-    [Header("Kalem Kontrolü")]
-    public bool hasPen = false; // Kalem var mı? (Kalem alınca true yap) // E'ye basınca true olur
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,14 +35,6 @@ public class PlayerMovement2 : MonoBehaviour
                 textChild.localScale = textScale;
             }
         }
-
-        // ----------- Kalem Animasyon Kontrolü -----------
-        if (!hasPen)
-        {
-            skeletonAnimation.AnimationName = "DrawingIdle";
-            return; // Diğer animasyonlara geçme
-        }
-
         // ----------- Normal Animasyon Kontrolü -----------
         if (Mathf.Abs(moveInput) > 0)
         {
@@ -53,7 +42,7 @@ public class PlayerMovement2 : MonoBehaviour
         }
         else
         {
-            skeletonAnimation.AnimationName = "Idle";
+            skeletonAnimation.AnimationName = "NoCrayon";
         }
     }
 }

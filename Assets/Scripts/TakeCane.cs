@@ -10,6 +10,8 @@ public class TakeCane : MonoBehaviour
 
     private bool hasCane = false;
     private bool isPlayerNear = false;
+    public GameObject aktiflesecekObje; // Inspector'dan ata
+
 
     void Start()
     {
@@ -22,6 +24,9 @@ public class TakeCane : MonoBehaviour
     {
         if (isPlayerNear && !hasCane && Input.GetKeyDown(KeyCode.E))
         {
+            if (aktiflesecekObje != null)
+                aktiflesecekObje.SetActive(true);
+
             hasCane = true;
             promptUI.SetActive(false);
 
@@ -42,6 +47,8 @@ public class TakeCane : MonoBehaviour
             // Kalem objesini aktif et
             if (kalemObjesi != null)
                 kalemObjesi.SetActive(true);
+
+
 
             Destroy(gameObject); // Baston objesini yok et
         }

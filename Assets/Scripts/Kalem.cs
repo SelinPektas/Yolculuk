@@ -2,28 +2,39 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Kalem : MonoBehaviour
-{
-    public GameObject baloncukUI; // Baloncuk objesi
+{// Baloncuk objesi
     public GameObject promptText; // "E'ye bas" gibi uyarı texti
     public Sprite kalemKagitSprite; // Inspector'dan ata
     private bool isPlayerNear = false;
     private PlayerMovement2 playerMovement2;
 
+    public GameObject player2; // Kalem kağıt prefabı
+
     void Update()
     {
         Inventory inv = FindObjectOfType<Inventory>();
         bool hasKalem = inv != null && inv.items.Contains("Kalem");
-
+        if (player2 != null && !hasKalem)
+        {
+            var skeleton = player2.GetComponent<Spine.Unity.SkeletonAnimation>();
+            if (skeleton != null && skeleton.AnimationName != "Drawing idle")
+                skeleton.AnimationName = "Drawing idle";
+        }
         if (isPlayerNear)
         {
             promptText.SetActive(true);
-            baloncukUI.SetActive(true);
 
             if (hasKalem && Input.GetKeyDown(KeyCode.E))
             {
-                playerMovement2.hasPen = true;
                 promptText.SetActive(false);
-                baloncukUI.SetActive(false);
+
+                var playerMovement = player2.GetComponent<PlayerMovement2>();
+                if (playerMovement != null)
+                {
+                    var skeleton = playerMovement.GetComponent<Spine.Unity.SkeletonAnimation>();
+                    if (skeleton != null)
+                        skeleton.AnimationState.SetAnimation(0, "Idle", false); // false = loop olmasın, bir kez oynasın
+                }
 
                 // Kalemi envanterden çıkar
                 inv.AddItem("Kalem Kağıt", kalemKagitSprite);
@@ -74,7 +85,6 @@ public class Kalem : MonoBehaviour
         else
         {
             promptText.SetActive(false);
-            baloncukUI.SetActive(false);
         }
     }
 

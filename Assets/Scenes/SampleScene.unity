@@ -285,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &277534493
 RectTransform:
   m_ObjectHideFlags: 0
@@ -769,7 +769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a7305b44041ba48b7039021f1f88a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baloncukUI: {fileID: 897273438}
   promptText: {fileID: 1448223797}
   kalemKagitSprite: {fileID: 21300000, guid: fb5af5bbc4b786a4ebce2a917e96cea0, type: 3}
 --- !u!4 &593942177
@@ -990,7 +989,6 @@ RectTransform:
   - {fileID: 634293193}
   - {fileID: 277534493}
   - {fileID: 1519544434}
-  - {fileID: 897273441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1006,81 +1004,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748812007}
   m_CullTransparentMesh: 1
---- !u!1 &897273438
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 897273441}
-  - component: {fileID: 897273440}
-  - component: {fileID: 897273439}
-  m_Layer: 5
-  m_Name: baloncuk
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &897273439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897273438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &897273440
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897273438}
-  m_CullTransparentMesh: 1
---- !u!224 &897273441
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897273438}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 748812012}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 191.49, y: 72}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &996728916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,7 +1194,7 @@ MonoBehaviour:
   disableRenderingOnOverride: 1
   updateTiming: 1
   unscaledTime: 0
-  _animationName: Idle1
+  _animationName: 
   loop: 1
   timeScale: 1
 --- !u!23 &996728927
@@ -1330,7 +1253,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1073372781}
-  - component: {fileID: 1073372779}
   - component: {fileID: 1073372778}
   - component: {fileID: 1073372777}
   - component: {fileID: 1073372776}
@@ -1339,6 +1261,7 @@ GameObject:
   - component: {fileID: 1073372785}
   - component: {fileID: 1073372784}
   - component: {fileID: 1073372783}
+  - component: {fileID: 1073372786}
   m_Layer: 3
   m_Name: "\xE7ocuk"
   m_TagString: Player2
@@ -1393,8 +1316,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 24.802656, y: 35.079998}
+  m_Offset: {x: 0.36356473, y: 1.963082}
+  m_Size: {x: 8.591296, y: 6.4865856}
   m_Direction: 0
 --- !u!114 &1073372777
 MonoBehaviour:
@@ -1437,19 +1360,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1073372779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073372774}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b66bd95f0a7fa34ea377baacc6dc833, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!4 &1073372781
 Transform:
   m_ObjectHideFlags: 0
@@ -1532,7 +1442,7 @@ MonoBehaviour:
   disableRenderingOnOverride: 1
   updateTiming: 1
   unscaledTime: 0
-  _animationName: 
+  _animationName: NoCrayon
   loop: 0
   timeScale: 1
 --- !u!23 &1073372785
@@ -1560,6 +1470,8 @@ MeshRenderer:
   - {fileID: 2100000, guid: 424978eb6d8e0234a9bfb44cfc14f465, type: 2}
   - {fileID: 2100000, guid: adb547f897d1fd04cbb103068d44781d, type: 2}
   - {fileID: 2100000, guid: 424978eb6d8e0234a9bfb44cfc14f465, type: 2}
+  - {fileID: 2100000, guid: adb547f897d1fd04cbb103068d44781d, type: 2}
+  - {fileID: 2100000, guid: 424978eb6d8e0234a9bfb44cfc14f465, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1581,6 +1493,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1073372786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073372774}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010639d521f61b74795a1beab68761d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &1123598724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,7 +2216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Kalem
-  itemIcon: {fileID: 21300000, guid: 2f41acc52dfeaf14f83b6485e304c95e, type: 3}
+  itemIcon: {fileID: 21300000, guid: 4d1520425372cbc4d8dd0ab5af81abe4, type: 3}
   openedBoxSprite: {fileID: 974921365, guid: 32c132f71a9c20f42952f4dc5a51d0b7, type: 3}
   boxImage: {fileID: 1519544432}
 --- !u!1 &1549570923
@@ -2518,6 +2443,7 @@ MonoBehaviour:
   caneName: Baston
   caneIcon: {fileID: 21300000, guid: da149f9c7b752d449b7f0fad6e4a75bf, type: 3}
   kalemObjesi: {fileID: 593942175}
+  aktiflesecekObje: {fileID: 277534492}
 --- !u!1 &1824650758
 GameObject:
   m_ObjectHideFlags: 0
