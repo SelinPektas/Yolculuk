@@ -3,26 +3,25 @@ using UnityEngine.UI;
 
 public class TakeCane : MonoBehaviour
 {
-    public GameObject cane;
     public GameObject promptUI;
-
     public string caneName = "Baston";
     public Sprite caneIcon;
+    public GameObject kalemObjesi; // Inspector'dan ata
 
     private bool hasCane = false;
     private bool isPlayerNear = false;
 
     void Start()
     {
-        cane.SetActive(false);
-        promptUI.SetActive(false); // Başlangıçta yazı gizli
+        promptUI.SetActive(false);
+        if (kalemObjesi != null)
+            kalemObjesi.SetActive(false); // Başta kalem gizli olsun
     }
 
     void Update()
     {
         if (isPlayerNear && !hasCane && Input.GetKeyDown(KeyCode.E))
         {
-            cane.SetActive(true);
             hasCane = true;
             promptUI.SetActive(false);
 
@@ -39,6 +38,10 @@ public class TakeCane : MonoBehaviour
                 if (movement != null)
                     movement.SetHasCane(true);
             }
+
+            // Kalem objesini aktif et
+            if (kalemObjesi != null)
+                kalemObjesi.SetActive(true);
 
             Destroy(gameObject); // Baston objesini yok et
         }

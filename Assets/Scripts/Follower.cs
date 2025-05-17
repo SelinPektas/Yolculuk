@@ -26,12 +26,14 @@ public class Follower : MonoBehaviour
             Vector2 direction = (target.position - transform.position).normalized;
             transform.position = Vector2.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
 
-            // Sağa giderken flipX = true, sola giderken flipX = false
+            // Flip işlemi (scale ile)
             if (direction.x != 0)
             {
-                var spriteRenderer = GetComponent<SpriteRenderer>();
-                if (spriteRenderer != null)
-                    spriteRenderer.flipX = direction.x > 0;
+                transform.localScale = new Vector3(
+                    Mathf.Abs(initialScale.x) * Mathf.Sign(direction.x),
+                    initialScale.y,
+                    initialScale.z
+                );
             }
 
             animator.SetFloat("Speed", Mathf.Abs(direction.x));

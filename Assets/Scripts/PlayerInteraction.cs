@@ -20,7 +20,6 @@ public class PlayerInteraction : MonoBehaviour
             if (!popupPanel.activeSelf)
             {
                 popupPanel.SetActive(true);
-                interactText.SetActive(false);
                 if (playerMovement != null)
                     playerMovement.enabled = false;
             }
