@@ -6,11 +6,13 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject popupPanel;         // Açılacak panel
     public GameObject interactText;       // "E'ye bas" yazısı
     private bool isNearObject = false;
-    private PlayerMovement playerMovement;
+    private PlayerMovement playerMovement1;
+    private PlayerMovement2 playerMovement2;
 
     void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        playerMovement1 = GetComponent<PlayerMovement>();
+        playerMovement2 = GetComponent<PlayerMovement2>();
     }
 
     void Update()
@@ -20,14 +22,14 @@ public class PlayerInteraction : MonoBehaviour
             if (!popupPanel.activeSelf)
             {
                 popupPanel.SetActive(true);
-                if (playerMovement != null)
-                    playerMovement.enabled = false;
+                if (playerMovement1 != null) playerMovement1.enabled = false;
+                if (playerMovement2 != null) playerMovement2.enabled = false;
             }
             else
             {
                 popupPanel.SetActive(false);
-                if (playerMovement != null)
-                    playerMovement.enabled = true;
+                if (playerMovement1 != null) playerMovement1.enabled = true;
+                if (playerMovement2 != null) playerMovement2.enabled = true;
             }
         }
     }

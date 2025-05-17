@@ -18,6 +18,10 @@ public class Follower : MonoBehaviour
     void Update()
     {
         if (target == null) return;
+        var movement1 = target.GetComponent<PlayerMovement>();
+        var movement2 = target.GetComponent<PlayerMovement2>();
+        if ((movement1 != null && !movement1.enabled) || (movement2 != null && !movement2.enabled))
+            return;
 
         float distance = Vector2.Distance(transform.position, target.position);
 

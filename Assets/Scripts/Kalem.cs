@@ -7,6 +7,7 @@ public class Kalem : MonoBehaviour
     public GameObject promptText; // "E'ye bas" gibi uyarı texti
     public Sprite kalemKagitSprite; // Inspector'dan ata
     private bool isPlayerNear = false;
+    private PlayerMovement2 playerMovement2;
 
     void Update()
     {
@@ -20,6 +21,7 @@ public class Kalem : MonoBehaviour
 
             if (hasKalem && Input.GetKeyDown(KeyCode.E))
             {
+                playerMovement2.hasPen = true;
                 promptText.SetActive(false);
                 baloncukUI.SetActive(false);
 
@@ -79,12 +81,18 @@ public class Kalem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             isPlayerNear = true;
+            playerMovement2 = other.GetComponent<PlayerMovement2>();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             isPlayerNear = false;
+            playerMovement2 = null;
+        }
     }
 }

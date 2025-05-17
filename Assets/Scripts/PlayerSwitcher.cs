@@ -29,7 +29,7 @@ public class PlayerSwitcher : MonoBehaviour
     void SwitchToA()
     {
         characterA.GetComponent<PlayerMovement>().enabled = true;
-        characterB.GetComponent<PlayerMovement>().enabled = false;
+        characterB.GetComponent<PlayerMovement2>().enabled = false;
 
         // Takipçi hedefini güncelle
         var follower = characterB.GetComponent<Follower>();
@@ -54,7 +54,7 @@ public class PlayerSwitcher : MonoBehaviour
     void SwitchToB()
     {
         characterA.GetComponent<PlayerMovement>().enabled = false;
-        characterB.GetComponent<PlayerMovement>().enabled = true;
+        characterB.GetComponent<PlayerMovement2>().enabled = true;
 
         // Takipçi hedefini güncelle
         var follower = characterA.GetComponent<Follower>();

@@ -22,7 +22,7 @@ public class kameraTakip : MonoBehaviour
         }
         if (playerB != null)
         {
-            var movementB = playerB.GetComponent<PlayerMovement>();
+            var movementB = playerB.GetComponent<PlayerMovement2>();
             if (movementB != null && movementB.enabled)
                 target = playerB;
         }
