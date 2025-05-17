@@ -14,12 +14,6 @@ public class Kalem : MonoBehaviour
     {
         Inventory inv = FindObjectOfType<Inventory>();
         bool hasKalem = inv != null && inv.items.Contains("Kalem");
-        if (player2 != null && !hasKalem)
-        {
-            var skeleton = player2.GetComponent<Spine.Unity.SkeletonAnimation>();
-            if (skeleton != null && skeleton.AnimationName != "Drawing idle")
-                skeleton.AnimationName = "Drawing idle";
-        }
         if (isPlayerNear)
         {
             promptText.SetActive(true);
@@ -33,7 +27,7 @@ public class Kalem : MonoBehaviour
                 {
                     var skeleton = playerMovement.GetComponent<Spine.Unity.SkeletonAnimation>();
                     if (skeleton != null)
-                        skeleton.AnimationState.SetAnimation(0, "Idle", false); // false = loop olmasın, bir kez oynasın
+                        skeleton.AnimationState.SetAnimation(0, "Idle1", false); // false = loop olmasın, bir kez oynasın
                 }
 
                 // Kalemi envanterden çıkar
