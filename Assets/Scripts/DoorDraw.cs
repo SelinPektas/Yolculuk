@@ -2,38 +2,74 @@ using UnityEngine;
 
 public class DoorDraw : MonoBehaviour
 {
-    public GameObject promptText;      // Yaklaşınca çıkacak text
-    public GameObject doorPrefab;      // Eklenecek kapı sprite prefabı
-    public GameObject aktifOlacakObje; // Aktif edilecek obje
-    public GameObject gosterilecekObje; // Collider'a girince görünecek obje
+    public GameObject promptText;
+    public GameObject doorPrefab;
+    public GameObject aktifOlacakObje;
+    public GameObject gosterilecekObje;
     public AudioSource audioSource;
+
+    public GameObject animPanel; // Inspector'dan ata: açılacak panel
+    public string animName = "Draw"; // Oynatılacak animasyon adı
+
     private bool isPlayer2Near = false;
+    private bool isPanelActive = false;
 
     void Start()
     {
         promptText.SetActive(false);
         if (aktifOlacakObje != null)
-            aktifOlacakObje.SetActive(false); // Başta kapalı olsun
+            aktifOlacakObje.SetActive(false);
         if (gosterilecekObje != null)
-            gosterilecekObje.SetActive(false); // AudioSource'u al
-                                               // Başta kapalı olsun
+            gosterilecekObje.SetActive(false);
+        if (animPanel != null)
+            animPanel.SetActive(false);
     }
 
     void Update()
     {
-        if (isPlayer2Near && Input.GetKeyDown(KeyCode.E))
+        if (isPlayer2Near && !isPanelActive && Input.GetKeyDown(KeyCode.E))
         {
-            Instantiate(doorPrefab, doorPrefab.transform.position, doorPrefab.transform.rotation);
-
-            if (aktifOlacakObje != null)
-                aktifOlacakObje.SetActive(true);
-
-            if (audioSource != null)
-                audioSource.Play();
+            // Paneli aç
+            if (animPanel != null)
+                animPanel.SetActive(true);
             promptText.SetActive(false);
-            isPlayer2Near = false;
-            Destroy(gameObject);
+            isPanelActive = true;
         }
+        else if (isPanelActive && Input.GetKeyDown(KeyCode.E))
+        {
+            // Panelde E'ye basınca animasyon başlat
+            StartCoroutine(PlayAnimAndFinish());
+            isPanelActive = false;
+        }
+    }
+
+    private System.Collections.IEnumerator PlayAnimAndFinish()
+    {
+        // Paneldeki SkeletonAnimation'ı bul
+        var skeleton = animPanel != null ? animPanel.GetComponentInChildren<Spine.Unity.SkeletonAnimation>() : null;
+        float animDuration = 1f;
+        if (skeleton != null)
+        {
+            skeleton.AnimationState.SetAnimation(0, animName, false);
+            animDuration = skeleton.Skeleton.Data.FindAnimation(animName)?.Duration ?? animDuration;
+        }
+
+        yield return new WaitForSeconds(animDuration);
+
+        // Paneli kapat
+        if (animPanel != null)
+            animPanel.SetActive(false);
+
+        // Kapı instantiate, obje aktif et, ses çal
+        Instantiate(doorPrefab, doorPrefab.transform.position, doorPrefab.transform.rotation);
+
+        if (aktifOlacakObje != null)
+            aktifOlacakObje.SetActive(true);
+
+        if (audioSource != null)
+            audioSource.Play();
+
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,12 +77,12 @@ public class DoorDraw : MonoBehaviour
         if (collision.gameObject.CompareTag("Player2"))
         {
             promptText.SetActive(true);
-            isPlayer2Near = true; // Player2 girince göster
+            isPlayer2Near = true;
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
             if (gosterilecekObje != null)
-                gosterilecekObje.SetActive(true); // Player1 girince de göster
+                gosterilecekObje.SetActive(true);
         }
     }
 
@@ -55,12 +91,12 @@ public class DoorDraw : MonoBehaviour
         if (collision.gameObject.CompareTag("Player2"))
         {
             promptText.SetActive(false);
-            isPlayer2Near = false; // Player2 çıkınca gizle
+            isPlayer2Near = false;
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
             if (gosterilecekObje != null)
-                gosterilecekObje.SetActive(false); // Player1 çıkınca da gizle
+                gosterilecekObje.SetActive(false);
         }
     }
 }

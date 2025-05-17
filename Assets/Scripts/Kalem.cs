@@ -18,16 +18,28 @@ public class Kalem : MonoBehaviour
         {
             promptText.SetActive(true);
 
-            if (hasKalem && Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
+                var skeleton = player2 != null ? player2.GetComponent<Spine.Unity.SkeletonAnimation>() : null;
+
+                if (!hasKalem)
+                {
+                    // Kalem yoksa NoCrayon animasyonu oynat, sonra Idle2'ye dön
+                    if (skeleton != null)
+                    {
+                        skeleton.AnimationState.SetAnimation(0, "NoCrayon", false);
+                        skeleton.AnimationState.AddAnimation(0, "Idle2", true, 0f);
+                    }
+                    return;
+                }
                 promptText.SetActive(false);
 
                 var playerMovement = player2.GetComponent<PlayerMovement2>();
                 if (playerMovement != null)
                 {
-                    var skeleton = playerMovement.GetComponent<Spine.Unity.SkeletonAnimation>();
-                    if (skeleton != null)
-                        skeleton.AnimationState.SetAnimation(0, "Idle1", false); // false = loop olmasın, bir kez oynasın
+                    var skeleton2 = playerMovement.GetComponent<Spine.Unity.SkeletonAnimation>();
+                    if (skeleton2 != null)
+                        skeleton2.AnimationState.SetAnimation(0, "Idle1", false); // false = loop olmasın, bir kez oynasın
                 }
 
                 // Kalemi envanterden çıkar
