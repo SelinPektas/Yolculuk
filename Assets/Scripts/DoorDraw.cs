@@ -6,7 +6,7 @@ public class DoorDraw : MonoBehaviour
     public GameObject doorPrefab;      // Eklenecek kapı sprite prefabı
     public GameObject aktifOlacakObje; // Aktif edilecek obje
     public GameObject gosterilecekObje; // Collider'a girince görünecek obje
-
+    public AudioSource audioSource;
     private bool isPlayer2Near = false;
 
     void Start()
@@ -15,7 +15,8 @@ public class DoorDraw : MonoBehaviour
         if (aktifOlacakObje != null)
             aktifOlacakObje.SetActive(false); // Başta kapalı olsun
         if (gosterilecekObje != null)
-            gosterilecekObje.SetActive(false); // Başta kapalı olsun
+            gosterilecekObje.SetActive(false); // AudioSource'u al
+                                               // Başta kapalı olsun
     }
 
     void Update()
@@ -27,6 +28,8 @@ public class DoorDraw : MonoBehaviour
             if (aktifOlacakObje != null)
                 aktifOlacakObje.SetActive(true);
 
+            if (audioSource != null)
+                audioSource.Play();
             promptText.SetActive(false);
             isPlayer2Near = false;
             Destroy(gameObject);

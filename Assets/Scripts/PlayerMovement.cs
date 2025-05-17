@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool wasWalking = false;
     private bool waitingForIdle = false;
+    private AudioSource stepAudio; // Adım sesi için
+
 
     public void SetHasCane(bool value)
     {
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         initialScale = transform.localScale;
+        stepAudio = GetComponent<AudioSource>(); // AudioSource'u al
+
     }
 
     private void Update()
@@ -51,6 +55,16 @@ public class PlayerMovement : MonoBehaviour
                 text1Scale.x = Mathf.Abs(text1Scale.x) * Mathf.Sign(initialScale.x) * direction;
                 text1Child.localScale = text1Scale;
             }
+        }
+        bool isWalking = Mathf.Abs(moveInput) > 0;
+
+        // Adım sesi kontrolü
+        if (stepAudio != null)
+        {
+            if (isWalking && !stepAudio.isPlaying)
+                stepAudio.Play();
+            else if (!isWalking && stepAudio.isPlaying)
+                stepAudio.Stop();
         }
 
         if (hasCane)

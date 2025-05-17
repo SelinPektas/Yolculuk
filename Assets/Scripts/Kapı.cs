@@ -7,6 +7,9 @@ public class Kapı : MonoBehaviour
 
     private bool isPlayerANear = false;
     private bool isPlayerBNear = false;
+    public AudioSource kapıAudioSource; // Inspector'dan ata
+
+
 
     void Start()
     {
@@ -20,7 +23,14 @@ public class Kapı : MonoBehaviour
         if (promptTextB == null)
             promptTextB = GameObject.Find("textçocuk");
         if (promptTextB != null)
-            promptTextB.SetActive(false);
+            promptTextB.SetActive(false);// AudioSource'u al
+        if (kapıAudioSource == null)
+        {
+            GameObject doorOpenObj = GameObject.Find("door-open");
+            if (doorOpenObj != null)
+                kapıAudioSource = doorOpenObj.GetComponent<AudioSource>();
+        }
+
     }
 
     void Update()
@@ -34,6 +44,8 @@ public class Kapı : MonoBehaviour
                 var movementA = playerA.GetComponent<PlayerMovement>();
                 if (movementA != null && movementA.enabled && Input.GetKeyDown(KeyCode.E))
                 {
+                    if (kapıAudioSource != null)
+                        kapıAudioSource.Play(); // Sahnedeki başka bir AudioSource'dan sesi çal
                     Destroy(gameObject);
                 }
             }
@@ -47,6 +59,8 @@ public class Kapı : MonoBehaviour
                 var movementB = playerB.GetComponent<PlayerMovement2>();
                 if (movementB != null && movementB.enabled && Input.GetKeyDown(KeyCode.E))
                 {
+                    if (kapıAudioSource != null)
+                        kapıAudioSource.Play(); // Sahnedeki başka bir AudioSource'dan sesi çal
                     Destroy(gameObject);
                 }
             }

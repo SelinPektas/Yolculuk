@@ -8,11 +8,13 @@ public class Follower : MonoBehaviour
     public float stopDistance = 1.5f;
     private SkeletonAnimation skeletonAnimation;
     private Vector3 initialScale;
+    private AudioSource stepAudio; // Adım sesi için
 
     void Start()
     {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         initialScale = transform.localScale;
+        stepAudio = GetComponent<AudioSource>(); // AudioSource'u al
     }
 
     void Update()
@@ -39,12 +41,20 @@ public class Follower : MonoBehaviour
             // Takip edenin animasyonu
             if (skeletonAnimation != null)
                 skeletonAnimation.AnimationName = "Walk2";
+
+            // Adım sesi kontrolü
+            if (stepAudio != null && !stepAudio.isPlaying)
+                stepAudio.Play();
         }
         else
         {
             // Durma animasyonu
             if (skeletonAnimation != null)
                 skeletonAnimation.AnimationName = "Idle1";
+
+            // Adım sesini durdur
+            if (stepAudio != null && stepAudio.isPlaying)
+                stepAudio.Stop();
         }
     }
 }

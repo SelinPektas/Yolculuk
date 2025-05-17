@@ -7,12 +7,16 @@ public class PlayerMovement2 : MonoBehaviour
     private Rigidbody2D rb;
     private SkeletonAnimation skeletonAnimation;
     private Vector3 initialScale;
+    private AudioSource stepAudio; // Adım sesi için
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         initialScale = transform.localScale;
+        stepAudio = GetComponent<AudioSource>(); // AudioSource'u al
+
     }
 
     private void Update()
@@ -35,8 +39,19 @@ public class PlayerMovement2 : MonoBehaviour
                 textChild.localScale = textScale;
             }
         }
+        bool isWalking = Mathf.Abs(moveInput) > 0;
+
+        // Adım sesi kontrolü
+        if (stepAudio != null)
+        {
+            if (isWalking && !stepAudio.isPlaying)
+                stepAudio.Play();
+            else if (!isWalking && stepAudio.isPlaying)
+                stepAudio.Stop();
+        }
+
         // ----------- Normal Animasyon Kontrolü -----------
-        if (Mathf.Abs(moveInput) > 0)
+        if (isWalking)
         {
             skeletonAnimation.AnimationName = "Walk2";
         }

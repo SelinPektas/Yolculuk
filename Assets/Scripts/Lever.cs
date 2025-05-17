@@ -12,9 +12,11 @@ public class Lever : MonoBehaviour
     private bool isCaneInserted = false;
     private bool isLeverPushed = false;
     private bool isPlayerNear = false;
+    public AudioSource leverAudio; // Inspector'dan ata
 
     void Update()
     {
+
         // Baston envanterde mi kontrol et
         bool hasCaneInInventory = false;
         Inventory inv = FindObjectOfType<Inventory>();
@@ -34,7 +36,13 @@ public class Lever : MonoBehaviour
             {
                 var movement = player.GetComponent<PlayerMovement>();
                 if (movement != null)
+                {
                     movement.SetHasCane(false);
+
+                }
+                var skeleton = player.GetComponent<Spine.Unity.SkeletonAnimation>();
+                if (skeleton != null)
+                    skeleton.AnimationState.SetAnimation(0, "Idle2", false); // false: loop olmasın, bir kez oynasın
             }
         }
         else if (isPlayerNear && isCaneInserted && !isLeverPushed && Input.GetKeyDown(KeyCode.E))
@@ -44,7 +52,8 @@ public class Lever : MonoBehaviour
 
             if (slotSpriteRenderer != null && pushedSprite != null)
                 slotSpriteRenderer.sprite = pushedSprite;
-
+            if (leverAudio != null)
+                leverAudio.Play();
             if (trainController != null)
                 trainController.StartTrain();
         }
@@ -52,7 +61,10 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isLeverPushed)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        var movement = player.GetComponent<PlayerMovement>();
+
+        if (other.CompareTag("Player") && !isLeverPushed && movement.enabled)
         {
             isPlayerNear = true;
             promptUI.SetActive(true);
