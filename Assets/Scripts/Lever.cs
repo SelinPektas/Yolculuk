@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    public GameObject cane;
     public GameObject promptUI;
     public TrainController trainController;
 
@@ -30,8 +29,13 @@ public class Lever : MonoBehaviour
                 inv.RemoveItem("Baston");
             if (slotSpriteRenderer != null && insertedSprite != null)
                 slotSpriteRenderer.sprite = insertedSprite;
-            if (cane != null)
-                cane.SetActive(false);
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                var movement = player.GetComponent<PlayerMovement>();
+                if (movement != null)
+                    movement.SetHasCane(false);
+            }
         }
         else if (isPlayerNear && isCaneInserted && !isLeverPushed && Input.GetKeyDown(KeyCode.E))
         {
@@ -48,7 +52,7 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && cane.activeInHierarchy && !isLeverPushed)
+        if (other.CompareTag("Player") && !isLeverPushed)
         {
             isPlayerNear = true;
             promptUI.SetActive(true);

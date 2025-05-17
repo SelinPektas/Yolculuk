@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TrainController : MonoBehaviour
 {
     public float speed = 5f;
     private bool isMoving = false;
-    public float resetPositionX = 20f; // Arka planın sıfırlanacağı X noktası
-    public float startPositionX = -20f; // Arka planın başa döneceği X noktası
+    private float timer = 0f;
 
     public void StartTrain()
     {
         isMoving = true;
+        timer = 0f;
     }
 
     void Update()
@@ -17,10 +18,10 @@ public class TrainController : MonoBehaviour
         if (isMoving)
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
-
-            if (transform.position.x >= resetPositionX)
+            timer += Time.deltaTime;
+            if (timer >= 5f)
             {
-                transform.position = new Vector3(startPositionX, transform.position.y, transform.position.z);
+                SceneManager.LoadScene("second");
             }
         }
     }
