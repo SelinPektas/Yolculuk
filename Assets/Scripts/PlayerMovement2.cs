@@ -24,7 +24,7 @@ public class PlayerMovement2 : MonoBehaviour
         if (moveInput != 0)
         {
             float direction = Mathf.Sign(moveInput);
-            transform.localScale = new Vector3(initialScale.x * direction, initialScale.y, initialScale.z);
+            transform.localScale = new Vector3(initialScale.x * direction * -1, initialScale.y, initialScale.z);
 
             // Text child'ının scale'ini karakterin yönüne göre düz veya ters yap
             Transform textChild = transform.Find("text");
@@ -38,11 +38,11 @@ public class PlayerMovement2 : MonoBehaviour
         // ----------- Normal Animasyon Kontrolü -----------
         if (Mathf.Abs(moveInput) > 0)
         {
-            skeletonAnimation.AnimationName = "Walk";
+            skeletonAnimation.AnimationName = "Walk2";
         }
         else
         {
-            skeletonAnimation.AnimationName = "NoCrayon";
+            skeletonAnimation.AnimationName = "Idle1";
         }
     }
 }

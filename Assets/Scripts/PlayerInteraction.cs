@@ -46,7 +46,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!enabled) return; // Script kapalıysa hiçbir şey yapma
         if (other.CompareTag("Interactable"))
         {
             isNearObject = false;

@@ -37,7 +37,7 @@ public class Kapı : MonoBehaviour
             var playerB = GameObject.FindGameObjectWithTag("Player2");
             if (playerB != null)
             {
-                var movementB = playerB.GetComponent<PlayerMovement>();
+                var movementB = playerB.GetComponent<PlayerMovement2>();
                 if (movementB != null && movementB.enabled && Input.GetKeyDown(KeyCode.E))
                 {
                     Destroy(gameObject);
@@ -60,7 +60,7 @@ public class Kapı : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player2"))
         {
-            var movement = collision.gameObject.GetComponent<PlayerMovement>();
+            var movement = collision.gameObject.GetComponent<PlayerMovement2>();
             if (movement != null && movement.enabled)
             {
                 if (promptTextB != null)
