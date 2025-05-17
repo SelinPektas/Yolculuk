@@ -29,8 +29,15 @@ public class TakeCane : MonoBehaviour
             // Bastonu envantere ekle
             Inventory inv = FindObjectOfType<Inventory>();
             if (inv != null)
-            {
                 inv.AddItem(caneName, caneIcon);
+
+            // PlayerMovement'a haber ver
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                var movement = player.GetComponent<PlayerMovement>();
+                if (movement != null)
+                    movement.SetHasCane(true);
             }
 
             Destroy(gameObject); // Baston objesini yok et
