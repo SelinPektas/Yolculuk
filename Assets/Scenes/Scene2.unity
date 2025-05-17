@@ -1082,9 +1082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 708845914}
   - component: {fileID: 708845924}
-  - component: {fileID: 708845923}
   - component: {fileID: 708845922}
-  - component: {fileID: 708845921}
   - component: {fileID: 708845920}
   - component: {fileID: 708845919}
   - component: {fileID: 708845918}
@@ -1107,7 +1105,7 @@ Transform:
   m_GameObject: {fileID: 708845913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.95, y: -3.92, z: 0}
+  m_LocalPosition: {x: -12.28, y: -6.12, z: 0}
   m_LocalScale: {x: -0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1336,27 +1334,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &708845921
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708845913}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &708845922
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1392,20 +1369,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.36356473, y: 1.963082}
   m_Size: {x: 8.591296, y: 6.4865856}
   m_Direction: 0
---- !u!114 &708845923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708845913}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a82cf6692668c4cb70f21f96e5aaf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPanel: {fileID: 0}
-  interactText: {fileID: 1776396417}
 --- !u!50 &708845924
 Rigidbody2D:
   serializedVersion: 4
@@ -1835,7 +1798,6 @@ GameObject:
   - component: {fileID: 1052531772}
   - component: {fileID: 1052531771}
   - component: {fileID: 1052531770}
-  - component: {fileID: 1052531769}
   - component: {fileID: 1052531768}
   - component: {fileID: 1052531767}
   - component: {fileID: 1052531766}
@@ -2054,20 +2016,6 @@ MonoBehaviour:
   target: {fileID: 708845914}
   followSpeed: 2
   stopDistance: 3
---- !u!114 &1052531769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052531763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a82cf6692668c4cb70f21f96e5aaf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPanel: {fileID: 0}
-  interactText: {fileID: 1486312837}
 --- !u!70 &1052531770
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2143,6 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
+  hasCane: 1
 --- !u!4 &1052531773
 Transform:
   m_ObjectHideFlags: 0
@@ -2152,7 +2101,7 @@ Transform:
   m_GameObject: {fileID: 1052531763}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.11, y: -2.37, z: 0}
+  m_LocalPosition: {x: -5.18, y: -5.8, z: 0}
   m_LocalScale: {x: 0.27, y: 0.27, z: 0.27}
   m_ConstrainProportionsScale: 1
   m_Children:
