@@ -10,8 +10,15 @@ public class Kapı : MonoBehaviour
 
     void Start()
     {
+        // promptTextA'yı sahnede "text" isimli objeye eşitle
+        if (promptTextA == null)
+            promptTextA = GameObject.Find("text");
         if (promptTextA != null)
             promptTextA.SetActive(false);
+
+        // promptTextB'yi sahnede "textçocuk" isimli objeye eşitle
+        if (promptTextB == null)
+            promptTextB = GameObject.Find("textçocuk");
         if (promptTextB != null)
             promptTextB.SetActive(false);
     }
