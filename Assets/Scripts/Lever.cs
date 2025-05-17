@@ -61,10 +61,7 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        var movement = player.GetComponent<PlayerMovement>();
-
-        if (other.CompareTag("Player") && !isLeverPushed && movement.enabled)
+        if (other.CompareTag("Player") && !isLeverPushed)
         {
             isPlayerNear = true;
             promptUI.SetActive(true);
