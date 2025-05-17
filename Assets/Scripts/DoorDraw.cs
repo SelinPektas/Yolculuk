@@ -14,6 +14,13 @@ public class DoorDraw : MonoBehaviour
     private bool isPlayer2Near = false;
     private bool isPanelActive = false;
 
+    public void OnDrawButtonClick()
+    {
+        if (!isPanelActive) return; // Panel aktif değilse işlem yapma
+        StartCoroutine(PlayAnimAndFinish());
+        isPanelActive = false;
+    }
+
     void Start()
     {
         promptText.SetActive(false);
@@ -35,23 +42,23 @@ public class DoorDraw : MonoBehaviour
             promptText.SetActive(false);
             isPanelActive = true;
         }
-        else if (isPanelActive && Input.GetKeyDown(KeyCode.E))
-        {
-            // Panelde E'ye basınca animasyon başlat
-            StartCoroutine(PlayAnimAndFinish());
-            isPanelActive = false;
-        }
+        // else if (isPanelActive && Input.GetKeyDown(KeyCode.E)) // Bunu kaldır!
+        // {
+        //     StartCoroutine(PlayAnimAndFinish());
+        //     isPanelActive = false;
+        // }
     }
 
     private System.Collections.IEnumerator PlayAnimAndFinish()
     {
-        // Paneldeki SkeletonAnimation'ı bul
-        var skeleton = animPanel != null ? animPanel.GetComponentInChildren<Spine.Unity.SkeletonAnimation>() : null;
+        // Paneldeki SkeletonGraphic'i bul
+        var skeletonGraphic = animPanel != null ? animPanel.GetComponentInChildren<Spine.Unity.SkeletonGraphic>() : null;
         float animDuration = 1f;
-        if (skeleton != null)
+        if (skeletonGraphic != null)
         {
-            skeleton.AnimationState.SetAnimation(0, animName, false);
-            animDuration = skeleton.Skeleton.Data.FindAnimation(animName)?.Duration ?? animDuration;
+            skeletonGraphic.AnimationState.SetAnimation(0, animName, false);
+            var animData = skeletonGraphic.Skeleton.Data.FindAnimation(animName);
+            animDuration = animData != null ? animData.Duration : animDuration;
         }
 
         yield return new WaitForSeconds(animDuration);
