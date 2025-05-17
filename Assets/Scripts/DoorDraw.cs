@@ -5,6 +5,7 @@ public class DoorDraw : MonoBehaviour
     public GameObject promptText;      // Yaklaşınca çıkacak text
     public GameObject doorPrefab;      // Eklenecek kapı sprite prefabı
     public GameObject aktifOlacakObje; // Aktif edilecek obje
+    public GameObject gosterilecekObje; // Collider'a girince görünecek obje
 
     private bool isPlayer2Near = false;
 
@@ -13,16 +14,16 @@ public class DoorDraw : MonoBehaviour
         promptText.SetActive(false);
         if (aktifOlacakObje != null)
             aktifOlacakObje.SetActive(false); // Başta kapalı olsun
+        if (gosterilecekObje != null)
+            gosterilecekObje.SetActive(false); // Başta kapalı olsun
     }
 
     void Update()
     {
         if (isPlayer2Near && Input.GetKeyDown(KeyCode.E))
         {
-            // Kapıyı aynı pozisyona ekle
             Instantiate(doorPrefab, doorPrefab.transform.position, doorPrefab.transform.rotation);
 
-            // İstediğin objeyi aktif et
             if (aktifOlacakObje != null)
                 aktifOlacakObje.SetActive(true);
 
@@ -37,7 +38,12 @@ public class DoorDraw : MonoBehaviour
         if (collision.gameObject.CompareTag("Player2"))
         {
             promptText.SetActive(true);
-            isPlayer2Near = true;
+            isPlayer2Near = true; // Player2 girince göster
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            if (gosterilecekObje != null)
+                gosterilecekObje.SetActive(true); // Player1 girince de göster
         }
     }
 
@@ -46,7 +52,12 @@ public class DoorDraw : MonoBehaviour
         if (collision.gameObject.CompareTag("Player2"))
         {
             promptText.SetActive(false);
-            isPlayer2Near = false;
+            isPlayer2Near = false; // Player2 çıkınca gizle
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            if (gosterilecekObje != null)
+                gosterilecekObje.SetActive(false); // Player1 çıkınca da gizle
         }
     }
 }
