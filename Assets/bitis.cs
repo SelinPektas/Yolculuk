@@ -9,7 +9,6 @@ public class PlayAndExit : MonoBehaviour
     {
         videoPlayer.Play(); // Videoyu başlat
         videoPlayer.loopPointReached += OnVideoEnd; // Video bitince çıkış yap
-        videoPlayer.SetDirectAudioMute(0, true);
     }
 
     void OnVideoEnd(VideoPlayer vp)
