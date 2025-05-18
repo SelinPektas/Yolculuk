@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private SkeletonAnimation skeletonAnimation;
-    private bool hasCane = false;
+    public bool hasCane = false;
     private Vector3 initialScale;
 
     private bool wasWalking = false;

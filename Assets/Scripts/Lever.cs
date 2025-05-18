@@ -4,6 +4,7 @@ public class Lever : MonoBehaviour
 {
     public GameObject promptUI;
     public TrainController trainController;
+    public GameObject lokomotifCanvas;
 
     public SpriteRenderer slotSpriteRenderer; // Slotun SpriteRenderer'ı
     public Sprite insertedSprite; // Baston takılı sprite
@@ -56,12 +57,21 @@ public class Lever : MonoBehaviour
                 leverAudio.Play();
             if (trainController != null)
                 trainController.StartTrain();
+            if (lokomotifCanvas != null)
+            {
+                lokomotifCanvas.SetActive(true);
+                Debug.Log("LokomotifCanvas açıldı.");
+              
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isLeverPushed)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        var movement = player.GetComponent<PlayerMovement>();
+
+        if (other.CompareTag("Player") && !isLeverPushed && movement.enabled)
         {
             isPlayerNear = true;
             promptUI.SetActive(true);

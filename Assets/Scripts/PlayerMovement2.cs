@@ -7,16 +7,15 @@ public class PlayerMovement2 : MonoBehaviour
     private Rigidbody2D rb;
     private SkeletonAnimation skeletonAnimation;
     private Vector3 initialScale;
-    private AudioSource stepAudio; // Adım sesi için
-
+    private AudioSource stepAudio;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         initialScale = transform.localScale;
-        stepAudio = GetComponent<AudioSource>(); // AudioSource'u al
-
+        initialScale.x = -Mathf.Abs(initialScale.x);
+        stepAudio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -24,24 +23,8 @@ public class PlayerMovement2 : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        // Flip sadece karakterin görseline uygulansın, text etkilenmesin
-        if (moveInput != 0)
-        {
-            float direction = Mathf.Sign(moveInput);
-            transform.localScale = new Vector3(initialScale.x * direction * -1, initialScale.y, initialScale.z);
-
-            // Text child'ının scale'ini karakterin yönüne göre düz veya ters yap
-            Transform textChild = transform.Find("text");
-            if (textChild != null)
-            {
-                Vector3 textScale = textChild.localScale;
-                textScale.x = Mathf.Abs(textScale.x) * Mathf.Sign(initialScale.x) * direction;
-                textChild.localScale = textScale;
-            }
-        }
         bool isWalking = Mathf.Abs(moveInput) > 0;
 
-        // Adım sesi kontrolü
         if (stepAudio != null)
         {
             if (isWalking && !stepAudio.isPlaying)
@@ -50,7 +33,6 @@ public class PlayerMovement2 : MonoBehaviour
                 stepAudio.Stop();
         }
 
-        // ----------- Normal Animasyon Kontrolü -----------
         if (isWalking)
         {
             skeletonAnimation.AnimationName = "Walk2";
@@ -58,6 +40,27 @@ public class PlayerMovement2 : MonoBehaviour
         else
         {
             skeletonAnimation.AnimationName = "Idle1";
+        }
+    }
+
+    private void LateUpdate()
+    {
+        float moveInput = Input.GetAxisRaw("Horizontal");
+
+        if (moveInput != 0)
+        {
+            float direction = Mathf.Sign(moveInput);
+            transform.localScale = new Vector3(Mathf.Abs(initialScale.x) * direction, initialScale.y, initialScale.z);
+
+            Transform textChild = transform.Find("textçocuk");
+            if (textChild != null)
+            {
+                textChild.localScale = new Vector3(
+                    Mathf.Abs(textChild.localScale.x) * direction * 1,
+                    textChild.localScale.y,
+                    textChild.localScale.z
+                );
+            }
         }
     }
 }
