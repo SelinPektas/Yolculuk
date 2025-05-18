@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject creditsPanel;
     public GameObject pauseMenuPanel;
-
+    public const string Scenename = "SampleScene";
 
     public bool IsGamePaused = false;
 
@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
         if (quitBtn != null)
             quitBtn.onClick.AddListener(QuitGame);
         if (resumeBtn != null)
-                resumeBtn.onClick.AddListener(StartGame);
+                resumeBtn.onClick.AddListener(ResumeGame);
         if (quitToMainMenuBtn != null)
                 quitToMainMenuBtn.onClick.AddListener(QuitToMainMenu);
         if (quitToMenuBtn != null)
@@ -75,7 +75,16 @@ public class UIManager : MonoBehaviour
         if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
         if (creditsPanel != null) creditsPanel.SetActive(false);
         if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
+        if (SceneManager.GetActiveScene().name != Scenename)
+            SceneManager.LoadScene(Scenename);
+        Time.timeScale = 1f;
+    }
 
+    public void ResumeGame()
+    {
+        if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
+        if (creditsPanel != null) creditsPanel.SetActive(false);
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 

@@ -4,6 +4,7 @@ public class Lever : MonoBehaviour
 {
     public GameObject promptUI;
     public TrainController trainController;
+    public GameObject lokomotifCanvas;
 
     public SpriteRenderer slotSpriteRenderer; // Slotun SpriteRenderer'ı
     public Sprite insertedSprite; // Baston takılı sprite
@@ -16,6 +17,7 @@ public class Lever : MonoBehaviour
 
     void Update()
     {
+
         // Baston envanterde mi kontrol et
         bool hasCaneInInventory = false;
         Inventory inv = FindObjectOfType<Inventory>();
@@ -24,44 +26,52 @@ public class Lever : MonoBehaviour
 
         if (isPlayerNear && !isCaneInserted && hasCaneInInventory && Input.GetKeyDown(KeyCode.E))
         {
-            // Bastonu envanterden sil
+            isCaneInserted = true;
+            promptUI.SetActive(true);
             if (inv != null)
                 inv.RemoveItem("Baston");
-
-            // Adamın bastonsuz animasyonunu oynat
+            if (slotSpriteRenderer != null && insertedSprite != null)
+                slotSpriteRenderer.sprite = insertedSprite;
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
+                var movement = player.GetComponent<PlayerMovement>();
+                if (movement != null)
+                {
+                    movement.SetHasCane(false);
+
+                }
                 var skeleton = player.GetComponent<Spine.Unity.SkeletonAnimation>();
                 if (skeleton != null)
-                    skeleton.AnimationState.SetAnimation(0, "Idle2", false); // Bastonsuz animasyon
+                    skeleton.AnimationState.SetAnimation(0, "Idle2", false); // false: loop olmasın, bir kez oynasın
             }
-
-            // isCaneInserted = true;
-            // promptUI.SetActive(true);
-            // if (slotSpriteRenderer != null && insertedSprite != null)
-            //     slotSpriteRenderer.sprite = insertedSprite;
-            // var movement = player.GetComponent<PlayerMovement>();
-            // if (movement != null)
-            //     movement.SetHasCane(false);
         }
+        else if (isPlayerNear && isCaneInserted && !isLeverPushed && Input.GetKeyDown(KeyCode.E))
+        {
+            isLeverPushed = true;
+            promptUI.SetActive(false);
 
-        // else if (isPlayerNear && isCaneInserted && !isLeverPushed && Input.GetKeyDown(KeyCode.E))
-        // {
-        //     isLeverPushed = true;
-        //     promptUI.SetActive(false);
-        //     if (slotSpriteRenderer != null && pushedSprite != null)
-        //         slotSpriteRenderer.sprite = pushedSprite;
-        //     if (leverAudio != null)
-        //         leverAudio.Play();
-        //     if (trainController != null)
-        //         trainController.StartTrain();
-        // }
+            if (slotSpriteRenderer != null && pushedSprite != null)
+                slotSpriteRenderer.sprite = pushedSprite;
+            if (leverAudio != null)
+                leverAudio.Play();
+            if (trainController != null)
+                trainController.StartTrain();
+            if (lokomotifCanvas != null)
+            {
+                lokomotifCanvas.SetActive(true);
+                Debug.Log("LokomotifCanvas açıldı.");
+              
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isLeverPushed)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        var movement = player.GetComponent<PlayerMovement>();
+
+        if (other.CompareTag("Player") && !isLeverPushed && movement.enabled)
         {
             isPlayerNear = true;
             promptUI.SetActive(true);
