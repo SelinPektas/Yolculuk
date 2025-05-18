@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5337982869000758328, guid: a33c899f709c0134ab5b9f95b8396482, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15.999985
+      objectReference: {fileID: 0}
     - target: {fileID: 7721923648760306386, guid: a33c899f709c0134ab5b9f95b8396482, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1966,7 +1970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b66bd95f0a7fa34ea377baacc6dc833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 2.5
   hasCane: 0
 --- !u!4 &996728921
 Transform:
@@ -2528,7 +2532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010639d521f61b74795a1beab68761d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 5
 --- !u!114 &1073372787
 MonoBehaviour:
   m_ObjectHideFlags: 0
