@@ -6,6 +6,7 @@ public class BridgeDraw : MonoBehaviour
     public GameObject animPanel; // Panel (Canvas) Inspector'dan ata
     public string animName = "Draw"; // Oynatılacak animasyon adı
     public GameObject aktifOlacakObje; // Animasyon bitince aktif olacak obje
+    public AudioSource audioSource; // Inspector'dan ata
 
     private bool isPlayerNear = false;
     private bool isPanelActive = false;
@@ -33,6 +34,8 @@ public class BridgeDraw : MonoBehaviour
     public void OnDrawButtonClick()
     {
         if (!isPanelActive) return;
+        if (audioSource != null)
+            audioSource.Play();
         StartCoroutine(PlayAnimAndFinish());
         isPanelActive = false;
     }
@@ -58,6 +61,7 @@ public class BridgeDraw : MonoBehaviour
         // Köprü aktif et
         if (aktifOlacakObje != null)
             aktifOlacakObje.SetActive(true);
+
 
         // Bu scriptin bağlı olduğu objeyi yok et
         Destroy(gameObject);

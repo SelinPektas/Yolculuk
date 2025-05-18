@@ -10,11 +10,14 @@ public class Follower : MonoBehaviour
     private Vector3 initialScale;
     private AudioSource stepAudio; // Adım sesi için
 
+    private Rigidbody2D rb;
+
     void Start()
     {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
         initialScale = transform.localScale;
-        stepAudio = GetComponent<AudioSource>(); // AudioSource'u al
+        stepAudio = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody2D>(); // Rigidbody2D'yi al
     }
 
     void Update()
@@ -26,7 +29,6 @@ public class Follower : MonoBehaviour
         if (distance > stopDistance)
         {
             Vector2 direction = (target.position - transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
 
             // Flip işlemi
             if (direction.x != 0)
@@ -38,21 +40,24 @@ public class Follower : MonoBehaviour
                 );
             }
 
-            // Takip edenin animasyonu
+            // Rigidbody2D ile hareket
+            if (rb != null)
+                rb.velocity = new Vector2(direction.x * followSpeed, rb.velocity.y);
+
             if (skeletonAnimation != null)
                 skeletonAnimation.AnimationName = "Walk2";
 
-            // Adım sesi kontrolü
             if (stepAudio != null && !stepAudio.isPlaying)
                 stepAudio.Play();
         }
         else
         {
-            // Durma animasyonu
+            if (rb != null)
+                rb.velocity = new Vector2(0, rb.velocity.y);
+
             if (skeletonAnimation != null)
                 skeletonAnimation.AnimationName = "Idle1";
 
-            // Adım sesini durdur
             if (stepAudio != null && stepAudio.isPlaying)
                 stepAudio.Stop();
         }

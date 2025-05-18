@@ -17,6 +17,8 @@ public class DoorDraw : MonoBehaviour
     public void OnDrawButtonClick()
     {
         if (!isPanelActive) return; // Panel aktif değilse işlem yapma
+        if (audioSource != null)
+            audioSource.Play();
         StartCoroutine(PlayAnimAndFinish());
         isPanelActive = false;
     }
@@ -73,8 +75,7 @@ public class DoorDraw : MonoBehaviour
         if (aktifOlacakObje != null)
             aktifOlacakObje.SetActive(true);
 
-        if (audioSource != null)
-            audioSource.Play();
+
 
         Destroy(gameObject);
     }
