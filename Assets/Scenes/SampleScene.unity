@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &104897923
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3769,7 +3769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1773663891
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3821,7 +3821,7 @@ MonoBehaviour:
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
-  startingAnimation: 
+  startingAnimation: Idle1
   startingLoop: 0
   timeScale: 1
   freeze: 0
