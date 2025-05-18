@@ -1,5 +1,6 @@
 using UnityEngine;
 using Spine.Unity;
+using UnityEngine.SceneManagement;
 
 public class IdlePlayerInteract : MonoBehaviour
 {// Oynatılacak animasyon
@@ -35,30 +36,7 @@ public class IdlePlayerInteract : MonoBehaviour
 
             if (hasFlower && Input.GetKeyDown(KeyCode.E))
             {
-                var skeleton1 = GetComponent<SkeletonAnimation>();
-                if (skeleton1 != null)
-                    skeleton1.AnimationState.SetAnimation(0, "Row", false);
-                // Player2'nin animasyonunu oynat
-                if (player2Objesi != null)
-                {
-                    var skeleton2 = player2Objesi.GetComponent<SkeletonAnimation>();
-                    if (skeleton2 != null)
-                        skeleton2.AnimationState.SetAnimation(0, "NoDoorIdle", false);
-
-                    // PlayerMovement2 scriptini devre dışı bırak
-                    var movementScript = player2Objesi.GetComponent<PlayerMovement2>();
-                    if (movementScript != null)
-                        movementScript.enabled = false;
-                }
-
-                // ENVANTERDEN "Çiçek" EŞYASINI SİL
-                if (inv != null)
-                    inv.RemoveItem("Çiçek");
-
-                if (promptText != null)
-                    promptText.SetActive(false);
-
-                enabled = false;
+                SceneManager.LoadScene("final"); // Buraya geçmek istediğin sahnenin adını yaz
             }
         }
     }
