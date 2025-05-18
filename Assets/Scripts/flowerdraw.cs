@@ -1,30 +1,34 @@
 using UnityEngine;
 
-public class kürek : MonoBehaviour
+public class flowerdraw : MonoBehaviour
 {
     public GameObject promptText;
     public GameObject animPanel;
+    public GameObject aktifOlacakObje;
     public string animName = "Draw";
-    public Sprite kürekSprite; // Inspector'dan veya koddan ata
     public AudioSource audioSource; // Inspector'dan ata
 
-    private bool isPlayerNear = false;
+    private bool isPlayer2Near = false;
     private bool isPanelActive = false;
 
     void Start()
     {
-        promptText.SetActive(false);
+        if (promptText != null)
+            promptText.SetActive(false);
         if (animPanel != null)
             animPanel.SetActive(false);
+        if (aktifOlacakObje != null)
+            aktifOlacakObje.SetActive(false);
     }
 
     void Update()
     {
-        if (isPlayerNear && !isPanelActive && Input.GetKeyDown(KeyCode.E))
+        if (isPlayer2Near && !isPanelActive && Input.GetKeyDown(KeyCode.E))
         {
             if (animPanel != null)
                 animPanel.SetActive(true);
-            promptText.SetActive(false);
+            if (promptText != null)
+                promptText.SetActive(false);
             isPanelActive = true;
         }
     }
@@ -32,6 +36,7 @@ public class kürek : MonoBehaviour
     public void OnDrawButtonClick()
     {
         if (!isPanelActive) return;
+        // SES ÇAL
         if (audioSource != null)
             audioSource.Play();
         StartCoroutine(PlayAnimAndFinish());
@@ -54,33 +59,21 @@ public class kürek : MonoBehaviour
         if (animPanel != null)
             animPanel.SetActive(false);
 
+        if (aktifOlacakObje != null)
+            aktifOlacakObje.SetActive(true);
 
-        // ENVANTERE KÜREK EKLE
-        Inventory inv = FindObjectOfType<Inventory>();
-        if (inv != null && kürekSprite != null)
-        {
-            inv.AddItem("Kürek", kürekSprite);
-        }
-
-        // SES ÇAL
 
 
         Destroy(gameObject);
     }
 
-    public GameObject aktifOlacakObje; // Inspector'dan ata
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player2"))
         {
-            promptText.SetActive(true);
-            isPlayerNear = true;
-        }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (aktifOlacakObje != null)
-                aktifOlacakObje.SetActive(true);
+            if (promptText != null)
+                promptText.SetActive(true);
+            isPlayer2Near = true;
         }
     }
 
@@ -88,8 +81,9 @@ public class kürek : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player2"))
         {
-            promptText.SetActive(false);
-            isPlayerNear = false;
+            if (promptText != null)
+                promptText.SetActive(false);
+            isPlayer2Near = false;
         }
     }
 }
