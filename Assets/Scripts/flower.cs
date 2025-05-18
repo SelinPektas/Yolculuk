@@ -5,18 +5,28 @@ public class flower : MonoBehaviour
     public GameObject promptText;      // "E'ye basabilirsin" yazısı
     public Sprite flowerSprite;        // Inspector'dan ata
     private bool isPlayer2Near = false;
+    private Animator player2Animator;
 
     void Start()
     {
         if (promptText != null)
             promptText.SetActive(false);
+
+        // Player2'nin Animator'ını bul
+        GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
+        if (player2 != null)
+            player2Animator = player2.GetComponent<Animator>();
     }
 
     void Update()
     {
         if (isPlayer2Near && Input.GetKeyDown(KeyCode.E))
         {
-            // ENVANTERE EKLE
+            // Animasyonu çalıştır
+            if (player2Animator != null)
+                player2Animator.Play("pickflowers");
+
+            // Envantere ekleme işlemi
             Inventory inv = FindObjectOfType<Inventory>();
             if (inv != null && flowerSprite != null)
                 inv.AddItem("Çiçek", flowerSprite);

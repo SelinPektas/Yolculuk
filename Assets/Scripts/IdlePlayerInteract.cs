@@ -2,8 +2,7 @@ using UnityEngine;
 using Spine.Unity;
 
 public class IdlePlayerInteract : MonoBehaviour
-{
-    public string animName = "Draw"; // Oynatılacak animasyon
+{// Oynatılacak animasyon
 
     private GameObject player2Objesi; // Sahnedeki "çocuk" objesi
     private GameObject promptText;    // player2Objesi'nin "textçocuk" adlı child objesi
@@ -36,17 +35,20 @@ public class IdlePlayerInteract : MonoBehaviour
 
             if (hasFlower && Input.GetKeyDown(KeyCode.E))
             {
-                // Prefab'ın animasyonunu değiştir
                 var skeleton1 = GetComponent<SkeletonAnimation>();
                 if (skeleton1 != null)
-                    skeleton1.AnimationState.SetAnimation(0, animName, false);
-
-                // Player2'nin animasyonunu değiştir
+                    skeleton1.AnimationState.SetAnimation(0, "Row", false);
+                // Player2'nin animasyonunu oynat
                 if (player2Objesi != null)
                 {
                     var skeleton2 = player2Objesi.GetComponent<SkeletonAnimation>();
                     if (skeleton2 != null)
-                        skeleton2.AnimationState.SetAnimation(0, animName, false);
+                        skeleton2.AnimationState.SetAnimation(0, "NoDoorIdle", false);
+
+                    // PlayerMovement2 scriptini devre dışı bırak
+                    var movementScript = player2Objesi.GetComponent<PlayerMovement2>();
+                    if (movementScript != null)
+                        movementScript.enabled = false;
                 }
 
                 // ENVANTERDEN "Çiçek" EŞYASINI SİL
