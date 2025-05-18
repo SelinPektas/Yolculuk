@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class BridgeDraw : MonoBehaviour
+public class kürek : MonoBehaviour
 {
     public GameObject promptText;
-    public GameObject animPanel; // Panel (Canvas) Inspector'dan ata
-    public string animName = "Draw"; // Oynatılacak animasyon adı
-    public GameObject aktifOlacakObje; // Animasyon bitince aktif olacak obje
+    public GameObject animPanel;
+    public string animName = "Draw";
+    public Sprite kürekSprite; // Inspector'dan veya koddan ata
     public AudioSource audioSource; // Inspector'dan ata
 
     private bool isPlayerNear = false;
@@ -14,8 +14,6 @@ public class BridgeDraw : MonoBehaviour
     void Start()
     {
         promptText.SetActive(false);
-        if (aktifOlacakObje != null)
-            aktifOlacakObje.SetActive(false);
         if (animPanel != null)
             animPanel.SetActive(false);
     }
@@ -42,7 +40,6 @@ public class BridgeDraw : MonoBehaviour
 
     private System.Collections.IEnumerator PlayAnimAndFinish()
     {
-        // Paneldeki SkeletonGraphic'i bul
         var skeletonGraphic = animPanel != null ? animPanel.GetComponentInChildren<Spine.Unity.SkeletonGraphic>() : null;
         float animDuration = 1f;
         if (skeletonGraphic != null)
@@ -54,16 +51,20 @@ public class BridgeDraw : MonoBehaviour
 
         yield return new WaitForSeconds(animDuration);
 
-        // Paneli kapat
         if (animPanel != null)
             animPanel.SetActive(false);
 
-        // Köprü aktif et
-        if (aktifOlacakObje != null)
-            aktifOlacakObje.SetActive(true);
+
+        // ENVANTERE KÜREK EKLE
+        Inventory inv = FindObjectOfType<Inventory>();
+        if (inv != null && kürekSprite != null)
+        {
+            inv.AddItem("Kürek", kürekSprite);
+        }
+
+        // SES ÇAL
 
 
-        // Bu scriptin bağlı olduğu objeyi yok et
         Destroy(gameObject);
     }
 

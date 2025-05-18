@@ -14,9 +14,10 @@ public class PlayerMovement2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         skeletonAnimation = GetComponent<SkeletonAnimation>();
+        // initialScale'i her zaman NEGATİF başlat (sola baksın)
         initialScale = transform.localScale;
-        stepAudio = GetComponent<AudioSource>(); // AudioSource'u al
-
+        initialScale.x = -Mathf.Abs(initialScale.x);
+        stepAudio = GetComponent<AudioSource>();
     }
 
     private void Update()
