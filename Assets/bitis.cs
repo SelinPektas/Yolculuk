@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class PlayAndExit : MonoBehaviour
@@ -13,6 +14,6 @@ public class PlayAndExit : MonoBehaviour
 
     void OnVideoEnd(VideoPlayer vp)
     {
-        Application.Quit(); // Uygulamayı kapat
+        SceneManager.LoadScene("UIScene");
     }
 }
