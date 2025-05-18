@@ -43,6 +43,9 @@ public class flowerdraw : MonoBehaviour
         isPanelActive = false;
     }
 
+    public GameObject playerObjesi; // Inspector'dan ata (disable edilecek obje)
+    public GameObject idlePlayerPrefab; // Inspector'dan ata (idle animasyonlu prefab)
+
     private System.Collections.IEnumerator PlayAnimAndFinish()
     {
         var skeletonGraphic = animPanel != null ? animPanel.GetComponentInChildren<Spine.Unity.SkeletonGraphic>() : null;
@@ -62,12 +65,24 @@ public class flowerdraw : MonoBehaviour
         if (aktifOlacakObje != null)
             aktifOlacakObje.SetActive(true);
 
+        // --- PLAYER'I DEVRE DIŞI BIRAK ---
+        if (playerObjesi != null)
+        {
+            // Pozisyonunu kaydet
+            Vector3 pos = playerObjesi.transform.position;
+            Quaternion rot = playerObjesi.transform.rotation;
+            playerObjesi.SetActive(false);
 
+            // Aynı yere idle animasyonlu prefab instantiate et
+            if (idlePlayerPrefab != null)
+            {
+                var idleObj = Instantiate(idlePlayerPrefab, pos, rot);
+                // İstersen sorting layer veya parent ayarı yapabilirsin
+            }
+        }
 
         Destroy(gameObject);
-    }
-
-    public GameObject playerObjesi; // Inspector'dan ata
+    } // Inspector'dan ata
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

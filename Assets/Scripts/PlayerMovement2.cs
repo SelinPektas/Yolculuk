@@ -31,12 +31,12 @@ public class PlayerMovement2 : MonoBehaviour
             float direction = Mathf.Sign(moveInput);
             transform.localScale = new Vector3(initialScale.x * direction * -1, initialScale.y, initialScale.z);
 
-            // Text child'ının scale'ini karakterin yönüne göre düz veya ters yap
+            // Text child'ının scale'ini HER ZAMAN pozitif yap
             Transform textChild = transform.Find("text");
             if (textChild != null)
             {
                 Vector3 textScale = textChild.localScale;
-                textScale.x = Mathf.Abs(textScale.x) * Mathf.Sign(initialScale.x) * direction;
+                textScale.x = Mathf.Abs(textScale.x); // Her zaman pozitif
                 textChild.localScale = textScale;
             }
         }
