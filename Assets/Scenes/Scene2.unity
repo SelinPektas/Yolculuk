@@ -329,7 +329,7 @@ MonoBehaviour:
   promptText: {fileID: 1776396417}
   animPanel: {fileID: 1410001755}
   aktifOlacakObje: {fileID: 1936705731}
-  animName: DrawingDoor
+  animName: Flower
   audioSource: {fileID: 15372121}
   playerObjesi: {fileID: 1052531763}
   idlePlayerPrefab: {fileID: 7180495202130437663, guid: 45adf3accee5b2349856530e94a4bcf9, type: 3}
@@ -1055,7 +1055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &349289438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1948,7 +1948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &759440979
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2550,9 +2550,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a377b99918e501f4dbd75300ed591cb9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aabaa147cc537ff4092c99d831e936eb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.319
+  m_Volume: 0.48
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3394,7 +3394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1282752270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5312,7 +5312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1874384878
 RectTransform:
   m_ObjectHideFlags: 0
