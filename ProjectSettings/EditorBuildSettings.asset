@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ART.unity
     guid: 0c5a34d73f5607d47b8c3eccca5151ec
+  - enabled: 1
+    path: Assets/Scenes/Introscene.unity
+    guid: c9f061202b7cd4742b4e1a1d1c58a06c
   m_configObjects: {}
