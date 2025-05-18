@@ -55,13 +55,14 @@ public class UIManager : MonoBehaviour
         {
             if (pauseMenuPanel != null && pauseMenuPanel.activeSelf)
             {
-                StartGame();
+                pauseMenuPanel.SetActive(false);
+                Time.timeScale = 1f;
             }
             else if (creditsPanel != null && creditsPanel.activeSelf)
             {
                 QuitToMainMenu();
             }
-            else if (mainMenuPanel != null && !mainMenuPanel.activeSelf)
+            else if ((mainMenuPanel == null || !mainMenuPanel.activeSelf) && (pauseMenuPanel != null && !pauseMenuPanel.activeSelf) && (creditsPanel == null || !creditsPanel.activeSelf))
             {
                 ShowPauseMenu();
             }

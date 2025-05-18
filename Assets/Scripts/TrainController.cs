@@ -21,7 +21,7 @@ public class TrainController : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= 5f)
             {
-                SceneManager.LoadScene("second");
+                SceneManager.LoadScene("Scene2");
             }
         }
     }

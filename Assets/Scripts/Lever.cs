@@ -65,7 +65,7 @@ public class Lever : MonoBehaviour
                 leverAudio.Play();
             if (trainController != null)
                 trainController.StartTrain();
-            StartCoroutine(LoadSceneAfterDelay(sceneNameToLoad, 5f));
+            //StartCoroutine(LoadSceneAfterDelay(sceneNameToLoad, 5f));
         
 
     }
@@ -91,10 +91,10 @@ public class Lever : MonoBehaviour
             promptUI.SetActive(false);
         }
     }
-    IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
-    {
-        Debug.Log(delay + " saniye sonra '" + sceneName + "' sahnesi yüklenecek.");
-        yield return new WaitForSeconds(delay); // Belirtilen süre kadar bekle
-        SceneManager.LoadScene(sceneName); // Sahneyi yükle
-    }
+    //IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
+    //{
+    //    Debug.Log(delay + " saniye sonra '" + sceneName + "' sahnesi yüklenecek.");
+    //    yield return new WaitForSeconds(delay); // Belirtilen süre kadar bekle
+    //    SceneManager.LoadScene(sceneName); // Sahneyi yükle
+    //}
 }
