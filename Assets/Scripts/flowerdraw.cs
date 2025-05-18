@@ -67,6 +67,8 @@ public class flowerdraw : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public GameObject playerObjesi; // Inspector'dan ata
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player2"))
@@ -74,6 +76,11 @@ public class flowerdraw : MonoBehaviour
             if (promptText != null)
                 promptText.SetActive(true);
             isPlayer2Near = true;
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (playerObjesi != null)
+                playerObjesi.SetActive(true);
         }
     }
 
